@@ -11,7 +11,7 @@ Our approach is based on [DeepCluster](https://openaccess.thecvf.com/content_ECC
 2. `Code/get_clusters_filehashes.py` can be used to obtain as many files as clusters, where each cluster-file lists the filenames of the images in the cluster. An example (zipped) is `900Clusters/filehashes_per_clusters_900clusters.zip`.
     * In our work, we obtained at this stage 635 homogeneous clusters, covering 90% of the input data. We determined this result thanks to manual inspection of 9000 samples (10 screenshots for each of the 900 cluster).
 
-3. Next, we selected the embeddings of the screenshots in non-homogeneous clusters and grouped them together via DBSCAN. The code using DBSCAN is reported in `Code/DBSCAN/run_dbscan.ipynb`. We share the pairwise distances between screenshots via an outside service as the size of the file exceeds the size allowed by GitHub ([upload-in-progress]()).
+3. Next, we selected the embeddings of the screenshots in non-homogeneous clusters and grouped them together via DBSCAN. The code using DBSCAN is reported in `Code/DBSCAN/run_dbscan.ipynb`. We share the pairwise distances between screenshots via an outside service as the size of the file exceeds the size allowed by GitHub ([link](https://www.kaggle.com/datasets/emerald101/from-attachments-to-seo?select=pairwise_distances_ConvNet.npy)).
     * We used the parameters ε = 50 and a minimum number of samples per cluster of 3.
     * In our work, we further inspected the results of DBSCAN before obtaining the 80 clusters. 
     
