@@ -1,3 +1,21 @@
+# From Attachments to SEO: Click Here to Learn More about Clickbait PDFs!
+This repository contains the code and documentation for our ACSAC 2023 paper _From Attachments to SEO: Click Here to Learn More about Clickbait PDFs!_.
+Due to file size constraints, part of the dataset and  the code are uploaded on Kaggle:
+
+* [Data](https://www.kaggle.com/datasets/emerald101/from-attachments-to-seo/data)
+* [Code](https://www.kaggle.com/code/emerald101/artifact-code-for-paper-from-attachments-to-seo)
+
+The data we share ("_artifact_") is made of multiple files and proves most of the results presented in our paper. We recommend inspecting the data and the code (a Jupyter notebook) on the Kaggle platform, as this allows to run the scripts without any setup nor file download.
+
+### Setup (to run locally)
+All the code in the notebook can be executed locally. We ran the experiments on a Linux Ubuntu 18.0 laptop using Python 3.6.9.
+We also use a minimal set of libraries:
+- Pandas 1.3.3 or higher
+- Numpy 1.21.2
+- Matplotlib 3.4.3
+
+This repository contains additional code not shared on Kaggle, which we used to train the deep learning model used in our paper. This procedure, presented in Section 3 of the paper has a more complex setup and relies on specialized hardware. We detail it below.
+
 ## Guide for Manually-aided Clustering
 
 This repository contains the scripts used for the two steps of our manually-aided clustering procedure (described in Section 3).
@@ -17,6 +35,8 @@ Our approach is based on [DeepCluster](https://openaccess.thecvf.com/content_ECC
     
 
 ### Setup
+We used Ubuntu 19.01 for the development of this code, and a TITAN RTX GPU to train the model.
+
 The code runs in a Conda environment.
  1. You can download and install Anaconda from official sources (e.g., [link](https://www.anaconda.com/download)) and follow the official documentation.
  2. Once conda is installed, create an ad-hoc environment and install the necessary dependencies: `conda env create -f Code/environment.yaml`
