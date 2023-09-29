@@ -23,6 +23,7 @@ These scripts are shared to foster future research. These files allow reproducin
 claim repeatability).
 
 Our approach is based on [DeepCluster](https://openaccess.thecvf.com/content_ECCV_2018/papers/Mathilde_Caron_Deep_Clustering_for_ECCV_2018_paper.pdf).
+### Training 
 
 ### Steps of clustering procedure
 1. `Code/compute_features_and_clusters.py` takes as input the filenames of the images to cluster via the parameter `--filehashes_file`, while `--data` specifies their filesystem location. We use the 20,671 unique screenshots listed in `900Clusters/filehashes_by_idx.txt`. The parameter `--exp_dir` specifies where to store the class labels returned by DeepCluster.
@@ -39,5 +40,5 @@ We used Ubuntu 19.01 for the development of this code, and a TITAN RTX GPU to tr
 
 The code runs in a Conda environment.
  1. You can download and install Anaconda from official sources (e.g., [link](https://www.anaconda.com/download)) and follow the official documentation.
- 2. Once conda is installed, create an ad-hoc environment and install the necessary dependencies: `conda env create -f Code/environment.yaml`
- 3. The training was performed on a server with multiple GPUs available. On the other hand, DBSCAN can be run locally.
+ 2. Once conda is installed, create an ad-hoc environment and install the necessary dependencies using: `conda create -n deepcluster python=3.7 faiss-gpu numpy scipy pillow torchvision=0.8.2 pytorch=1.7.1 cudatoolkit=10.1 imagehash scikit-learn -c pytorch -c conda-forge`
+ 3. The training was performed on a GPU server. On the other hand, DBSCAN can be run locally.
