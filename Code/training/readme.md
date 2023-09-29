@@ -1,0 +1,2 @@
+- We used the hyperparameters specified in `main.sh`
+- To train, run: `./main.sh`
