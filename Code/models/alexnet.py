@@ -19,24 +19,18 @@ CFG = {
 
 
 class AlexNet(nn.Module):
-    def __init__(self, features, num_classes, sobel, pretrained=False):
+    def __init__(self, features, num_classes, sobel):
         super(AlexNet, self).__init__()
-        if pretrained:
-            model = torch.hub.load('pytorch/vision:v0.8.2', 'alexnet', pretrained=True)
-            self.features = model.features
-            self.top_layer = model.classifier[6]
-            self.classifier = nn.Sequential(*[model.classifier[i] for i in range(6)])
-        else:
-            self.features = features
-            self.classifier = nn.Sequential(nn.Dropout(0.5),
+        self.features = features
+        self.classifier = nn.Sequential(nn.Dropout(0.5),
                             nn.Linear(256 * 6 * 6, 4096),
                             nn.ReLU(inplace=True),
                             nn.Dropout(0.5),
                             nn.Linear(4096, 4096),
                             nn.ReLU(inplace=True))
 
-            self.top_layer = nn.Linear(4096, num_classes)
-            self._initialize_weights()
+        self.top_layer = nn.Linear(4096, num_classes)
+        self._initialize_weights()
 
         if sobel:
             grayscale = nn.Conv2d(3, 1, kernel_size=1, stride=1, padding=0)
@@ -55,7 +49,7 @@ class AlexNet(nn.Module):
                 p.requires_grad = False
         else:
             self.sobel = None
-        
+
     def forward(self, x):
         if self.sobel:
             x = self.sobel(x)
@@ -98,7 +92,7 @@ def make_layers_features(cfg, input_dim, bn):
     return nn.Sequential(*layers)
 
 
-def alexnet(sobel=False, bn=True, out=1000, pretrained=False):
+def alexnet(sobel=False, bn=True, out=1000):
     dim = 2 + int(not sobel)
-    model = AlexNet(make_layers_features(CFG['2012'], dim, bn=bn), out, sobel,pretrained)
+    model = AlexNet(make_layers_features(CFG['2012'], dim, bn=bn), out, sobel)
     return model

@@ -23,11 +23,8 @@ from util import AverageMeter
     ##given the k-means clustering, compute and save information about the clusters (centroids, labels as array).
 
 parser = argparse.ArgumentParser(description='Inspect clusters')
-#file containing the filehashes, line i is the filehash of the image having index i 
-parser.add_argument('--filehashes_file', default='filehashes_by_idx.txt', type=str, metavar='PATH',
-                        help='path to filehashes')
 #where the checkpoints are stored and where to save the computed features 
-parser.add_argument('--exp_dir', default='../exp9_folder', type=str, metavar='PATH',
+parser.add_argument('--exp_dir', default='../exp10_folder', type=str, metavar='PATH',
                         help='path to the clusters file')
 #cluster assignment produced by k-means, should be saved in args.exp_dir
 parser.add_argument('--clusters_file', default='clusters', type=str, metavar='PATH',
