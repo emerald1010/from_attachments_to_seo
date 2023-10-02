@@ -37,14 +37,14 @@ We used Ubuntu 19.01 for the development of the deep learning model. The depende
 - To train, run: `Code/main.sh`.
 - The images that will be used to train should be placed as flattened files under `<DATASET_ROOT_DIR>/<DATASET_DIR>`. The training scripts takes the path `<DATASET_ROOT_DIR>'. This is to facilitate data loading by pytorch dataloader. 
 
-#### Computing features
+### Computing features
 To compute and save ConvNet features after training given the last checkpoint, use:
 
 `python Code/compute_features_and_clusters.py --data <DATA_DIR> --exp_dir <OUTPUT_DIR>`
 
 This will also save processed features after applying PCA and normalization. It also computes pairwise L2 distances between features. Optionally, you can get more information about the k-means clustering done during training (you can safely ignore this step, set `--get_kmeans_info` to 0).
 
-#### Get clusters 
+### Get clusters 
 Once the training is completed, to output which data point belong to which cluster, run:
 
 `python Code/get_clusters_filehashes.py --clusters_file <OUTPUT_DIR>/clusters --saved_filehashes_dir <OUTPUT_DIR>/filehashes_per_clusters/ --filehashes_file Code/filehashes_by_idx.txt`
@@ -54,6 +54,8 @@ This uses the clustering information saved in the output dir `--clusters_file` a
 - `Code/get_clusters_filehashes.py` can be used to obtain as many files as clusters, where each cluster-file lists the filenames of the images in the cluster. An example (zipped) is `900Clusters/filehashes_per_clusters_900clusters.zip`.
 * In our work, we obtained at this stage 635 homogeneous clusters, covering 90% of the input data. We determined this result thanks to manual inspection of 9000 samples (10 screenshots for each of the 900 cluster).
 
+- All results from training and clustering can be found under `900clusters`. The subset of files we used is in `filehashes_by_idx.txt`.
+  
 ### DBSCAN
 Finally, we selected the embeddings of the screenshots in non-homogeneous clusters and grouped them together via DBSCAN. The code using DBSCAN is reported in `Code/DBSCAN/run_dbscan.ipynb`. We share the pairwise distances between screenshots via an outside service as the size of the file exceeds the size allowed by GitHub ([link](https://www.kaggle.com/datasets/emerald101/from-attachments-to-seo?select=pairwise_distances_ConvNet.npy)).
 * We used the parameters ε = 50 and a minimum number of samples per cluster of 3.
